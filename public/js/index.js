@@ -10,6 +10,6 @@ socket.on('disconnect', function () {
   console.log('Disconnected from server');
 });
 
-socket.on('newMessage', function (newMessage) {
-  console.log('New Message Received', newMessage);
+socket.on('welcomeMessage', function (welcomeMessage) {
+  console.log('New Message Received', welcomeMessage);
 });
