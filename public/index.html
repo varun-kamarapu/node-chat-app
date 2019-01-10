@@ -10,7 +10,7 @@
     <style media="screen">
       .contacts{background-color: Steelblue; height: 100vh}
       .messages{background-color: LightGray; height: 100vh}
-      .form-inline{position: absolute; bottom:5px}
+      .form-horizontal{position: absolute; bottom:5px; left: 10px; right:5px}
       ul{margin:0; list-style-type: none}
       li{border:  1px solid blue}
       li.list-group-item:nth-child(odd){background-color: #fff}
@@ -23,17 +23,24 @@
         <div class="contacts col-sm-2">
           <h3>Contacts</h3>
         </div>
-        <div class="messages col-sm-10">
+        <div class="messages col-sm-10" style="position:relative">
           <div class="">
             <ul id="messages" class="list-group" style="padding-top:20px"></ul>
           </div>
 
-            <form id="message-form" class="form-inline" action="index.html" method="post">
+            <form id="message-form" class="form-horizontal" action="index.html" method="post">
               <div class="form-group">
-                <input type="text" class="form-control" width= 40px name="message" placeholder="Enter Your Message Here" autofocus autocomplete="off" />
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="message" placeholder="Enter Your Message Here" autofocus autocomplete="off" />
+                </div>
+
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-default" name="button">Send</button>
+                </div>
+
               </div>
-              <button type="button" class="btn btn-default" name="button">Send</button>
-            </form>
+
+              </form>
         </div>
       </div>
 
