@@ -4,20 +4,38 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="shortcut icon" href="/public/img/favicon.jpg">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style media="screen">
+      .contacts{background-color: PaleVioletRed; height: 100vh}
+      .messages{background-color: LightGray; height: 100vh}
+      .form-inline{position: absolute; bottom:5px}
+      ul{margin:0; list-style-type: none}
+      li{border:  1px solid blue}
+    </style>
   </head>
   <body>
+    <div class="container">
+      <div class="row">
+        <div class="contacts col-sm-2">
+          <h3>Contacts</h3>
+        </div>
+        <div class="messages col-sm-10">
+          <div class="">
+            <ul id="messages" class="list-group" style="padding-top:20px"></ul>
+          </div>
 
-    <p>Welcome to Chat App</p>
+            <form id="message-form" class="form-inline" action="index.html" method="post">
+              <div class="form-group">
+                <input type="text" class="form-control" width= 40px name="message" placeholder="Enter Your Message Here" autofocus autocomplete="off" />
+              </div>
+              <button type="button" class="btn btn-default" name="button">Send</button>
+            </form>
+        </div>
+      </div>
 
-    <ul id="messages"></ul>
-
-
-    <form id="message-form" class="" action="index.html" method="post">
-      <input type="text" name="message" placeholder="Enter Your Message Here" autofocus autocomplete="off" />
-      <button type="button" name="button">Send</button>
-    </form>
-
+    </div>
 
 
     <script src='/socket.io/socket.io.js'></script>
