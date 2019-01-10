@@ -4,10 +4,24 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="shortcut icon" href="/public/img/favicon.jpg">
+
   </head>
   <body>
-    <p>This is a chat application</p>
+
+    <p>Welcome to Chat App</p>
+
+    <ul id="messages"></ul>
+
+
+    <form id="message-form" class="" action="index.html" method="post">
+      <input type="text" name="message" placeholder="Enter Your Message Here" autofocus autocomplete="off" />
+      <button type="button" name="button">Send</button>
+    </form>
+
+
+
     <script src='/socket.io/socket.io.js'></script>
+    <script src='./js/libs/jquery-3.3.1.min.js'></script>
     <script src='./js/index.js'></script>
   </body>
 </html>

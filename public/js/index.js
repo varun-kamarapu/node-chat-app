@@ -10,6 +10,22 @@ socket.on('disconnect', function () {
   console.log('Disconnected from server');
 });
 
-socket.on('welcomeMessage', function (welcomeMessage) {
-  console.log('New Message Received', welcomeMessage);
+socket.on('newMessage', function (newMessage) {
+
+  var messages = jQuery('#messages');
+  var li = jQuery('<li></li>');
+  li.text(`${newMessage.from}: ${newMessage.text}`);
+  messages.append(li);
 });
+
+jQuery('#message-form').on('submit', function (e) {
+  e.preventDefault();
+
+  socket.emit('createMessage', {
+    from: 'Varun',
+    text: jQuery('[name=message]').val()
+  }, function (ackMessage) {
+      jQuery('[name=message]').val('')
+  });
+
+})
