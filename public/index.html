@@ -16,6 +16,7 @@
       li.list-group-item:nth-child(odd){background-color: #fff}
       li.list-group-item:nth-child(even){background-color: powderblue}
     </style>
+
   </head>
   <body>
     <div class="container">
@@ -30,12 +31,16 @@
 
             <form id="message-form" class="form-horizontal" action="index.html" method="post">
               <div class="form-group">
-                <div class="col-sm-10">
+                <div class="col-sm-8">
                   <input type="text" class="form-control" name="message" placeholder="Enter Your Message Here" autofocus autocomplete="off" />
                 </div>
 
-                <div class="col-sm-2">
-                  <button type="button" class="btn btn-default" name="button">Send</button>
+                <div class="col-sm-1">
+                  <button type="button" class="btn btn-default" name="button" id="sendButton">Send</button>
+                </div>
+
+                <div class="col-sm-3">
+                  <button type="button" class="btn btn-default" name="button" id="sendGeoLocationButton">Send Location</button>
                 </div>
 
               </div>
@@ -46,9 +51,19 @@
 
     </div>
 
+    <script id="message-template" type="text/template">
+        <li class="list-group-item"> {{from}} {{createdAt}}: {{text}}</li>
+    </script>
+
+    <script id="geo-message-template" type="text/template">
+        <li class="list-group-item">
+          {{from}} {{createdAt}}: <a target="_blank" href="https://www.google.com/maps?q={{lat}}, {{lon}}">My Current Location</a>
+        </li>
+    </script>
 
     <script src='/socket.io/socket.io.js'></script>
     <script src='./js/libs/jquery-3.3.1.min.js'></script>
+    <script src='./js/libs/mustache.js'></script>
     <script src='./js/index.js'></script>
   </body>
 </html>

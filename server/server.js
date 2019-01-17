@@ -3,7 +3,7 @@ const socketIO = require('socket.io');
 const http = require('http');
 const path = require('path');
 
-const {generateMessage} = require('./utils/message');
+const {generateMessage, generateGeoMessage} = require('./utils/message');
 const port = process.env.PORT || 3000;
 var publicPath = path.join(__dirname,'../public')
 
@@ -23,8 +23,11 @@ io.on('connection', (socket) => {
   socket.on('createMessage', (message, callback) => {
     console.log('createMessage', message);
     io.emit('newMessage', generateMessage(message.from, message.text));
-    callback('From Server');
+    callback();
+  });
 
+  socket.on('sendGeoLocation', (coordinates) => {
+    io.emit('newGeoMessage', generateGeoMessage(coordinates.from, coordinates.lat, coordinates.lon))
   });
 
   socket.on('disconnect', () => {
