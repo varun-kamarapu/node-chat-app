@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="shortcut icon" href="/public/img/favicon.jpg">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style media="screen">
+      .contacts{background-color: Steelblue; height: 100vh}
+      .messages{background-color: LightGray; height: 100vh}
+      .form-horizontal{position: absolute; bottom:5px; left: 10px; right:5px}
+      ul{margin:0; list-style-type: none}
+      li{border:  1px solid blue}
+      li.list-group-item:nth-child(odd){background-color: #fff}
+      li.list-group-item:nth-child(even){background-color: powderblue}
+    </style>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="contacts col-sm-2">
+          <h3>Contacts</h3>
+        </div>
+        <div class="messages col-sm-10" style="position:relative">
+          <div class="">
+            <ul id="messages" class="list-group" style="padding-top:20px"></ul>
+          </div>
+
+            <form id="message-form" class="form-horizontal" action="index.html" method="post">
+              <div class="form-group">
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="message" placeholder="Enter Your Message Here" autofocus autocomplete="off" />
+                </div>
+
+                <div class="col-sm-1">
+                  <button type="button" class="btn btn-default" name="button" id="sendButton">Send</button>
+                </div>
+
+                <div class="col-sm-3">
+                  <button type="button" class="btn btn-default" name="button" id="sendGeoLocationButton">Send Location</button>
+                </div>
+
+              </div>
+              </form>
+        </div>
+      </div>
+
+    </div>
+
+    <script id="message-template" type="text/template">
+        <li class="list-group-item"> {{from}} {{createdAt}}: {{text}}</li>
+    </script>
+
+    <script id="geo-message-template" type="text/template">
+        <li class="list-group-item">
+          {{from}} {{createdAt}}: <a target="_blank" href="https://www.google.com/maps?q={{lat}}, {{lon}}">My Current Location</a>
+        </li>
+    </script>
+
+    <script src='/socket.io/socket.io.js'></script>
+    <script src='./js/libs/jquery-3.3.1.min.js'></script>
+    <script src='./js/libs/deparam.js'></script>
+    <script src='./js/libs/mustache.js'></script>
+    <script src='./js/chat.js'></script>
+
+  </body>
+</html>

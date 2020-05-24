@@ -4,6 +4,7 @@ const http = require('http');
 const path = require('path');
 
 const {generateMessage, generateGeoMessage} = require('./utils/message');
+const {isRealString}= require('./utils/validation')
 const port = process.env.PORT || 3000;
 var publicPath = path.join(__dirname,'../public')
 
@@ -16,9 +17,21 @@ app.use(express.static(publicPath));
 
 io.on('connection', (socket) => {
 
-  socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat room'));
+  socket.on('join', (params, callback) => {
+    if(!isRealString(params.name) || !isRealString(params.room)){
+        callback('Name and Room Name are required')
+      }
 
-  socket.broadcast.emit('newMessage', generateMessage('Admin', 'New User Joined'));
+      socket.join(params.room);
+
+      socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat room'));
+
+      socket.broadcast.to(params.room).emit('newMessage', generateMessage('Admin', `${params.name} has joined`));
+
+      callback();
+  });
+
+
 
   socket.on('createMessage', (message, callback) => {
     console.log('createMessage', message);
@@ -35,8 +48,6 @@ io.on('connection', (socket) => {
   });
 
 });
-
-
 
 server.listen(port, () => {
   console.log(`The app is up on port ${port}`);
